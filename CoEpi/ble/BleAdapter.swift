@@ -19,7 +19,7 @@ class BleAdapter {
             myCen.onNext(cen.toHex())
             return cen
 
-        }, tcnFinder: { [discovered] data in
+        }, tcnFinder: { [discovered] (data, nil) in
             discovered.onNext(CEN(CEN: data.toHex(), timestamp: Date().coEpiTimestamp))
 
         }) { error in
