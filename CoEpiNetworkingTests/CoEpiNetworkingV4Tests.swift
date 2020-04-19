@@ -46,28 +46,37 @@ class CoEpiNetworkingV4Tests: XCTestCase {
      */
     func testV4getTcnReport() {
             
-            let url: String = apiV4 + "/tcnreport"
-            let expect = expectation(description: "request complete")
-            let session = Session(eventMonitors: [ AlamofireLogger() ])
-            
-            let _ = session.request(url).responseJSON { response in
-                expect.fulfill()
-                switch response.result {
-                case .success(let JSON):
-                    print("\n\n Success value and JSON: \(JSON)")
-                    XCTAssertNotNil(JSON)
+        let url: String = apiV4 + "/tcnreport"
+           executeGet(url: url)
+    }
+    
+    private func executeGet(url: String){
+        let expect = expectation(description: "request complete")
+        let session = Session(eventMonitors: [ AlamofireLogger() ])
+        
+        let _ = session.request(url).responseJSON { response in
+            expect.fulfill()
+            switch response.result {
+            case .success(let JSON):
+                print("\n\n Success value and JSON: \(JSON)")
+                XCTAssertNotNil(JSON)
 
-                case .failure(let error):
-                    print("\n\n Request failed with error: \(error)")
-                    XCTFail()
-                }
-                
+            case .failure(let error):
+                print("\n\n Request failed with error: \(error)")
+                XCTFail()
             }
             
-            waitForExpectations(timeout: 5)
-
-                   // Then
-    //               XCTAssertNotNil(data)
         }
+        
+        waitForExpectations(timeout: 5)
+
+               // Then
+//               XCTAssertNotNil(data)
+    }
+    
+    func testV4getTcnReportWithDate() {
+        let url: String = apiV4 + "/tcnreport?date=2020-04-19"
+        executeGet(url: url)
+    }
 
 }
