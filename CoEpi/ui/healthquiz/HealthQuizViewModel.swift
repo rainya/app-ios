@@ -21,8 +21,9 @@ class HealthQuizViewModel: UINotifier {
 
     let disposeBag = DisposeBag()
 
-    init(container: DependencyContainer) {
-        self.symptomRepo = try! container.resolve()
+    init(symptomRepo: SymptomRepo) {
+        self.symptomRepo = symptomRepo
+        
         questionsRelay = BehaviorRelay(value: symptomRepo.symptoms()
             .map{ Question(symptom: $0) })
 
