@@ -17,7 +17,7 @@ class HealthQuizViewModel: UINotifier {
     private let symptomRepo: SymptomRepo
     private let questionsRelay: BehaviorRelay<[Question]>
 
-    let submitAction: CocoaAction
+    private let submitAction: CocoaAction
 
     let disposeBag = DisposeBag()
 
