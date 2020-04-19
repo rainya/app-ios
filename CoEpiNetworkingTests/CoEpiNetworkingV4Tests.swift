@@ -1,4 +1,5 @@
 import XCTest
+import Foundation
 import Alamofire
 
 final class AlamofireLogger: EventMonitor {
@@ -44,7 +45,7 @@ class CoEpiNetworkingV4Tests: XCTestCase {
      curl -X GET https://18ye1iivg6.execute-api.us-west-1.amazonaws.com/v4/tcnreport
      ["WlhsS01GcFlUakJKYW05cFdXMDVhMlZUU2prPQ=="]
      */
-    func testV4getTcnReport() {
+    func testV4GetTcnReport() {
             
         let url: String = apiV4 + "/tcnreport"
            executeGet(url: url)
@@ -70,13 +71,51 @@ class CoEpiNetworkingV4Tests: XCTestCase {
         
         waitForExpectations(timeout: 5)
 
-               // Then
-//               XCTAssertNotNil(data)
     }
     
-    func testV4getTcnReportWithDate() {
+    /**
+     curl -X GET https://18ye1iivg6.execute-api.us-west-1.amazonaws.com/v4/tcnreport?date=2020-04-19
+     */
+    func testV4GetTcnReportWithDate() {
         let url: String = apiV4 + "/tcnreport?date=2020-04-19"
         executeGet(url: url)
+    }
+    
+    /**
+     curl -X POST https://18ye1iivg6.execute-api.us-west-1.amazonaws.com/v4/tcnreport -d "ZXlKMFpYTjBJam9pWW05a2VTSjk="
+     */
+    
+    func testV4PostTcnReport() {
+        let urlString: String = apiV4 + "/tcnreport"
+        let expect = expectation(description: "POST request complete")
+        let session = Session(eventMonitors: [ AlamofireLogger() ])
+        let paramsString = "Test payload 1"
+        let paramsStringEncoded = Data(paramsString.utf8).base64EncodedString()
+        
+        let url = URL(string: urlString)!
+        var urlRequest = URLRequest(url: url)
+        urlRequest.method = .post
+
+        urlRequest.httpBody = Data(paramsStringEncoded.utf8)
+        
+        do {
+            let _ = session.request(urlRequest)
+                .cURLDescription { description in
+                print(description)
+            }
+            .response { response in
+                switch response.result {
+                case .success:
+                    expect.fulfill()
+                case .failure(let error):
+                    print("\n\n Request failed with error: \(error)")
+                    XCTFail()
+                }
+                
+            }
+        }
+        
+        waitForExpectations(timeout: 15)
     }
 
 }
