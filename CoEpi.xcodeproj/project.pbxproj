@@ -21,6 +21,7 @@
 		62983D90243CE39E00B0294C /* HealthQuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE98BE98242DDCBC00EFB67A /* HealthQuizViewModel.swift */; };
 		62983D91243CE60600B0294C /* RealmDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A4B9B7242CC97600516F3B /* RealmDao.swift */; };
 		62B9A01F2434036A00885519 /* DebugViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486BDD5242BA28C00A63DD5 /* DebugViewModel.swift */; };
+		84201694244C901C000EE281 /* Action in Frameworks */ = {isa = PBXBuildFile; productRef = 84201693244C901C000EE281 /* Action */; };
 		844D26BA24479DCA0045FDD6 /* TCNClient in Frameworks */ = {isa = PBXBuildFile; productRef = 844D26B924479DCA0045FDD6 /* TCNClient */; };
 		844D26BC24479E1D0045FDD6 /* BleAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844D26BB24479E1D0045FDD6 /* BleAdapter.swift */; };
 		848434522438BF91006A5839 /* SwiftEntryKit in Frameworks */ = {isa = PBXBuildFile; productRef = 848434512438BF91006A5839 /* SwiftEntryKit */; };
@@ -305,6 +306,7 @@
 				84A4B9A7242CA4D500516F3B /* Realm in Frameworks */,
 				30EF955B2432E009007D61C7 /* CryptoSwift in Frameworks */,
 				8486BDCD242B9AC900A63DD5 /* RxCocoa in Frameworks */,
+				84201694244C901C000EE281 /* Action in Frameworks */,
 				8486BDCB242B9AC900A63DD5 /* RxRelay in Frameworks */,
 				848434522438BF91006A5839 /* SwiftEntryKit in Frameworks */,
 				8486BDC7242B9AC900A63DD5 /* RxSwift in Frameworks */,
@@ -814,6 +816,7 @@
 				848434702438F6CA006A5839 /* Alamofire */,
 				849D1AFB2439D7B300804511 /* RxSwiftExt */,
 				844D26B924479DCA0045FDD6 /* TCNClient */,
+				84201693244C901C000EE281 /* Action */,
 			);
 			productName = CoEpi;
 			productReference = 849DFE622427D3750008ED65 /* CoEpi.app */;
@@ -904,6 +907,7 @@
 				8484346F2438F6CA006A5839 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				849D1AFA2439D7B300804511 /* XCRemoteSwiftPackageReference "RxSwiftExt" */,
 				844D26B824479DCA0045FDD6 /* XCRemoteSwiftPackageReference "tcn-client-ios" */,
+				84201692244C901B000EE281 /* XCRemoteSwiftPackageReference "Action" */,
 			);
 			productRefGroup = 849DFE632427D3750008ED65 /* Products */;
 			projectDirPath = "";
@@ -1614,6 +1618,14 @@
 				minimumVersion = 1.3.0;
 			};
 		};
+		84201692244C901B000EE281 /* XCRemoteSwiftPackageReference "Action" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/Action";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 		844D26B824479DCA0045FDD6 /* XCRemoteSwiftPackageReference "tcn-client-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TCNCoalition/tcn-client-ios";
@@ -1685,6 +1697,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 30EF95592432E009007D61C7 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
 			productName = CryptoSwift;
+		};
+		84201693244C901C000EE281 /* Action */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84201692244C901B000EE281 /* XCRemoteSwiftPackageReference "Action" */;
+			productName = Action;
 		};
 		844D26B924479DCA0045FDD6 /* TCNClient */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -3,6 +3,7 @@ import RxCocoa
 import RxSwift
 import RxSwiftExt
 import os.log
+import Action
 
 class HealthQuizViewModel: UINotifier {
     let rxQuestions: Driver<[Question]>
@@ -15,7 +16,7 @@ class HealthQuizViewModel: UINotifier {
     private let symptomRepo: SymptomRepo
     private let questionsRelay: BehaviorRelay<[Question]>
 
-    private let submitTrigger: PublishRelay<Void> = PublishRelay()
+    let submitAction: CocoaAction
 
     let disposeBag = DisposeBag()
 
@@ -30,7 +31,18 @@ class HealthQuizViewModel: UINotifier {
         notification = notificationSubject
             .asDriver(onErrorDriveWith: .empty())
 
-        observeSubmit()
+        let selectedSymptoms = questionsRelay
+            .map { questions in questions
+                .filter { $0.checked }
+                .map { $0.toSymptom() }
+            }
+        submitAction = Action { [symptomRepo] in
+            selectedSymptoms.flatMap {
+                symptomRepo.submitSymptoms(symptoms: $0).asVoidObservable()
+            }
+        }
+        
+        bindSubmit()
     }
 
     func question(at index: Int) -> Question {
@@ -44,28 +56,16 @@ class HealthQuizViewModel: UINotifier {
     }
 
     func onTapSubmit() {
-        submitTrigger.accept(())
+        submitAction.execute()
     }
 
-    private func observeSubmit() {
-        let selectedSymptoms = questionsRelay
-            .map { questions in questions
-                .filter { $0.checked }
-                .map { $0.toSymptom() }
-            }
-
-        let events: Observable<Event<()>> = submitTrigger.withLatestFrom(selectedSymptoms)
-            .flatMap { [symptomRepo] symptoms in
-                symptomRepo.submitSymptoms(symptoms: symptoms)
-                    .materialize()
-            }
-            .share()
-
-        events.elements().subscribe(onNext: { [weak self] success in
+    private func bindSubmit() {
+        submitAction.elements.subscribe(onNext: { [weak self] _ in
             self?.delegate?.onSubmit()
         }).disposed(by: disposeBag)
 
-        bindSuccessErrorNotifier(events, successMessage: "Symptoms submitted!")
+        bindSuccessNotifier(submitAction.elements, message: "Symptoms submitted!")
+        bindErrorNotifier(submitAction.errors)
     }
 }
 
