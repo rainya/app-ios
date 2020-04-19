@@ -1,8 +1,42 @@
 "alerts.count.units" = "new contact alert";
 "alerts.title" = "Alerts";
 
+"healthquiz.submit" = "SUBMIT";
+"healthquiz.symptomQuestion" = "Are you experiencing any of the following symptoms?";
 "healthquiz.title" = "My Health";
 
+"home.contactAlerts.button" = "SEE ALERTS";
 "home.contactAlerts.description" = "Approximate times that you may have been exposed to a symptomatic individual";
+"home.contactAlerts.title" = "Contact Alerts";
+"home.footer.build" = "Build";
+"home.footer.debug" = "Debug";
+"home.footer.version" = "Version";
+"home.myHealth.button" = "CHECK-IN";
 "home.myHealth.description" = "Monitor your health and report symptoms";
+"home.myHealth.title" = "My Health";
 "home.share" = "Share";
+
+"onboarding.alerts.pre" = "Get ";
+"onboarding.alerts.main" = "contextualized alerts";
+"onboarding.alerts.post" = " about possible exposure to infectious illness";
+"onboarding.getStarted" = "GET STARTED";
+"onboarding.howDataUsed" = "How your data is used";
+"onboarding.logo" = "Collaborate. Inform. Protect.";
+"onboarding.monitor.pre" = "";
+"onboarding.monitor.main" = "Monitor";
+"onboarding.monitor.post" = " your health";
+"onboarding.track.pre" = "";
+"onboarding.track.main" = "Track";
+"onboarding.track.post" = " where you've been";
+
+"symptom.fever" = "Fever";
+"symptom.tiredness" = "Tiredness";
+"symptom.dryCough" = "Dry cough";
+"symptom.muscleAches" = "Muscle aches";
+"symptom.nasalCongestion" = "Nasal congestion";
+"symptom.runnyNose" = "Runny nose";
+"symptom.soreThroat" = "Sore throat";
+"symptom.diarrhea" = "Diarrhea";
+"symptom.difficultyBreathing" = "Difficulty breathing";
+"symptom.lossOfSmellTaste" = "Loss of smell/taste";
+"symptom.none" = "None of the above";

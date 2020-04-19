@@ -6,7 +6,9 @@ class HealthQuizViewController: UIViewController, ErrorDisplayer {
     private let viewModel: HealthQuizViewModel
     private let dataSource: HealthQuizQuestionsDataSource = .init()
 
+    @IBOutlet weak var symptomQuestionHeader: UILabel!
     @IBOutlet weak var questionList: UITableView!
+    @IBOutlet weak var submitButton: UIButton!
     
     private let disposeBag = DisposeBag()
     
@@ -45,6 +47,9 @@ class HealthQuizViewController: UIViewController, ErrorDisplayer {
         viewModel.notification
             .drive(rx.notification)
             .disposed(by: disposeBag)
+        
+        symptomQuestionHeader.text = NSLocalizedString("healthquiz.symptomQuestion", value: "Are you experiencing any of the following symptoms?", comment: "Question at top of page")
+        submitButton.setTitle(NSLocalizedString("healthquiz.submit", value: "SUBMIT", comment: "Button to send healthquiz results to server"), for: .normal)
      }
 }
 

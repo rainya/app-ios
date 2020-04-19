@@ -11,11 +11,18 @@ class HomeViewController: UIViewController {
     @IBAction func seeAlertsButtonTapped(_ sender: UIButton) {
         viewModel.seeAlertsTapped()
     }
+    
+    @IBOutlet weak var myHealthTitle: UILabel!
     @IBOutlet weak var myHealthDescriptionLabel: UILabel!
+    @IBOutlet weak var myHealthButton: UIButton!
+    @IBOutlet weak var contactAlertsTitle: UILabel!
     @IBOutlet weak var contactAlertsDescriptionLabel: UILabel!
+    @IBOutlet weak var contactAlertsButton: UIButton!
     
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var buildLabel: UILabel!
+    @IBOutlet weak var debugButton: UIButton!
+    
     
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -50,16 +57,22 @@ class HomeViewController: UIViewController {
         myHealthDescriptionLabel.lineBreakMode = .byWordWrapping
         myHealthDescriptionLabel.sizeToFit()
         
-        myHealthDescriptionLabel.attributedText = NSMutableAttributedString(string: NSLocalizedString("home.myHealth.description", value: "Monitor your health and report symptoms.", comment: "button description"), attributes: [NSAttributedString.Key.kern: 0.25, NSAttributedString.Key.paragraphStyle: paragraphStyle ])
+        myHealthTitle.text = NSLocalizedString("home.myHealth.title", value: "My Health", comment: "section title")
+        myHealthDescriptionLabel.attributedText = NSMutableAttributedString(string: NSLocalizedString("home.myHealth.description", value: "Monitor your health and report symptoms.", comment: "section description"), attributes: [NSAttributedString.Key.kern: 0.25, NSAttributedString.Key.paragraphStyle: paragraphStyle ])
+        myHealthButton.setTitle(NSLocalizedString("home.myHealth.button", value: "CHECK-IN", comment: "button description"), for: .normal)
         
+        contactAlertsTitle.text = NSLocalizedString("home.contactAlerts.title", value: "Contact Alerts", comment: "section title")
         contactAlertsDescriptionLabel.numberOfLines = 0
         contactAlertsDescriptionLabel.lineBreakMode = .byWordWrapping
         contactAlertsDescriptionLabel.attributedText = NSMutableAttributedString(string: NSLocalizedString("home.contactAlerts.description", value: "Approximate times that you may have been exposed to a symptomatic individual", comment: "button description"), attributes: [NSAttributedString.Key.kern: 0.25, NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        contactAlertsButton.setTitle(NSLocalizedString("home.contactAlerts.button", value: "SEE ALERTS", comment: "button description"), for: .normal)
+        
         configureCardView(cardView: self.stackContainerView)
         configureCardView(cardView: self.stackContainerViewTwo)
         
         versionLabel.text = getVersionNumber()
         buildLabel.text = getBuildNumber()
+        debugButton.setTitle(NSLocalizedString("home.footer.debug", value: "Debug", comment: "Button"), for: .normal)
     }
     
     private func getVersionNumber() -> String{
@@ -69,7 +82,7 @@ class HomeViewController: UIViewController {
             fatalError("Failed to read bundle version")
         }
         print("Version : \(version)");
-        return "Version: \(version)"
+        return "\(NSLocalizedString("home.footer.version", value: "Version", comment: "Label")): \(version)"
     }
     
     private func getBuildNumber() -> String {
@@ -77,7 +90,7 @@ class HomeViewController: UIViewController {
             fatalError("Failed to read build number")
         }
         print("Build : \(build)")
-        return "Build: \(build)"
+        return "\(NSLocalizedString("home.footer.build", value: "Build", comment: "Label")): \(build)"
     }
     
     private func configureCardView(cardView: UIView){
