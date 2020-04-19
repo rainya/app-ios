@@ -8,6 +8,7 @@ import Action
 class HealthQuizViewModel: UINotifier {
     let rxQuestions: Driver<[Question]>
     let notification: Driver<UINotification>
+    let setActivityIndicatorVisible: Driver<Bool>
 
     let notificationSubject: PublishRelay<UINotification> = PublishRelay()
 
@@ -41,7 +42,10 @@ class HealthQuizViewModel: UINotifier {
                 symptomRepo.submitSymptoms(symptoms: $0).asVoidObservable()
             }
         }
-        
+
+        setActivityIndicatorVisible = submitAction.executing
+            .asDriver(onErrorJustReturn: false)
+
         bindSubmit()
     }
 
