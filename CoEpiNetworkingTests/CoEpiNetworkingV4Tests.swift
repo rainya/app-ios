@@ -11,9 +11,19 @@ final class AlamofireLogger: EventMonitor {
         """
         NSLog(message)
     }
-
+    
+    
+    
     func request<Value>(_ request: DataRequest, didParseResponse response: DataResponse<Value, Error>) {
         NSLog("⚡️ Response Received: \(response.debugDescription)")
+    }
+    
+    func request(_ request: DataRequest, didParseResponse response: DataResponse<Data?, AFError>) {
+        NSLog("⚡️ Response Received (unserialized): \(response.debugDescription)")
+    }
+    
+    func requestDidFinish(_ request: Request){
+        NSLog("⚡️ Request did finish: \(request.response.debugDescription)")
     }
 }
 
@@ -21,25 +31,6 @@ class CoEpiNetworkingV4Tests: XCTestCase {
     
     let apiV4 = "https://18ye1iivg6.execute-api.us-west-1.amazonaws.com/v4"
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
     
     /*
      curl -X GET https://18ye1iivg6.execute-api.us-west-1.amazonaws.com/v4/tcnreport
@@ -89,7 +80,7 @@ class CoEpiNetworkingV4Tests: XCTestCase {
         let urlString: String = apiV4 + "/tcnreport"
         let expect = expectation(description: "POST request complete")
         let session = Session(eventMonitors: [ AlamofireLogger() ])
-        let paramsString = "Test payload 1"
+        let paramsString = "Test payload \(Date().timeIntervalSince1970)"
         let paramsStringEncoded = Data(paramsString.utf8).base64EncodedString()
         
         let url = URL(string: urlString)!
