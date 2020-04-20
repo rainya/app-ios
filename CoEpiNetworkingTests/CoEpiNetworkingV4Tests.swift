@@ -56,15 +56,15 @@ class CoEpiNetworkingV4Tests: XCTestCase {
             }
             .responseJSON { response in
              let statusCode = response.response?.statusCode
-            print("statusCode : [\(statusCode!)]")
+            NSLog("⚡️ statusCode : [\(statusCode!)]")
             expect.fulfill()
             switch response.result {
             case .success(let JSON):
-                print("\n\n Success value and JSON: \(JSON)")
+                print("\n Success value and JSON: \(JSON)")
                 XCTAssertNotNil(JSON)
 
             case .failure(let error):
-                print("\n\n Request failed with error: \(error)")
+                print("\n Request failed with error: \(error)")
                 XCTFail()
             }
             
@@ -78,8 +78,39 @@ class CoEpiNetworkingV4Tests: XCTestCase {
      curl -X GET https://18ye1iivg6.execute-api.us-west-1.amazonaws.com/v4/tcnreport?date=2020-04-19
      */
     func testV4GetTcnReportWithDate() {
-        let url: String = apiV4 + "/tcnreport?date=2020-04-18"
-        executeGet(url: url)
+        
+        let dateString = "2020-04-19"
+        guard let date = getDateForString(dateString) else
+        {
+                XCTFail("Date conversion failed for [\(dateString)]")
+                return
+        }
+        
+        getTcnForDate(date)
+    }
+    
+    private func getTcnForDate(_ date: Date){
+        let intervalLengthMillis : Int64 = 6 * 3600 * 1000
+        let millis = Int64(date.timeIntervalSince1970 * 1000)
+        let intervalNumber = millis / intervalLengthMillis
+        let dateformater = DateFormatter()
+        dateformater.dateFormat = "yyyy-MM-dd"//"yyyy-MM-dd HH:mm:ss ZZZ"
+        dateformater.timeZone = TimeZone(abbreviation: "UTC")
+        let formatedDate = dateformater.string(from: date)
+        
+        print("intervalLengthMillis : [\(intervalLengthMillis)]")
+        print("millis : [\(millis)]")
+        print("intervalNumber : [\(intervalNumber)]")
+        print("formatedDate : [\(formatedDate)]")
+        
+        //Single date has 4 6h long intervals:
+        for var i : Int64 in 0...3 {
+            let url: String = apiV4 + "/tcnreport?date=\(formatedDate)&intervalNumber=\(intervalNumber+i)&intervalLengthMs=\(intervalLengthMillis)"
+            print("url : [\(url)]")
+            executeGet(url: url)
+            
+        }
+
     }
     
     /**
@@ -108,6 +139,14 @@ class CoEpiNetworkingV4Tests: XCTestCase {
         print("url : [\(url)]")
 
         executeGet(url: url)
+    }
+    
+    private func getDateForString(_ dateString: String) -> Date?{
+        let dateformater = DateFormatter()
+        dateformater.dateFormat = "yyyy-MM-dd"
+        dateformater.timeZone = TimeZone(abbreviation: "UTC")
+        let date = dateformater.date(from: dateString)!
+        return date
     }
     
     
