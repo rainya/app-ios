@@ -1,4 +1,6 @@
-"alerts.count.units" = "nueva alerta de contacto";
+"alerts.count.none" = "no hay nuevas alertas de contacto";
+"alerts.count.one" = "1 nueva alerta de contacto";
+"alerts.count.some" = "%d nuevas alertas de contacto";
 "alerts.title" = "Alertas";
 
 "healthquiz.submit" = "ENVIAR";

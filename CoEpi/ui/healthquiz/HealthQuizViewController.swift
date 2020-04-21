@@ -15,7 +15,7 @@ class HealthQuizViewController: UIViewController, ErrorDisplayer {
     init(viewModel: HealthQuizViewModel) {
         self.viewModel = viewModel
         super.init(nibName: String(describing: Self.self), bundle: nil)
-        title = NSLocalizedString("healthquiz.title", value: "My Health", comment: "Page title")
+        title = L10n.Healthquiz.title
         
         dataSource.onChecked = { (question, idx) in
             viewModel.handleAnswer(question: question, idx: idx)
@@ -48,8 +48,8 @@ class HealthQuizViewController: UIViewController, ErrorDisplayer {
             .drive(rx.notification)
             .disposed(by: disposeBag)
         
-        symptomQuestionHeader.text = NSLocalizedString("healthquiz.symptomQuestion", value: "Are you experiencing any of the following symptoms?", comment: "Question at top of page")
-        submitButton.setTitle(NSLocalizedString("healthquiz.submit", value: "SUBMIT", comment: "Button to send healthquiz results to server"), for: .normal)
+        symptomQuestionHeader.text = L10n.Healthquiz.symptomQuestion
+        submitButton.setTitle(L10n.Healthquiz.submit, for: .normal)
      }
 }
 

@@ -49,7 +49,7 @@ class HomeViewController: UIViewController {
 
         paragraphStyle.lineHeightMultiple = 1.07
         
-        let share = UIBarButtonItem(title: NSLocalizedString("home.share", value: "Share", comment: "Tell a friend about CoEpi"), style: .plain, target: self, action: #selector(share(sender:)))
+        let share = UIBarButtonItem(title: L10n.Home.share, style: .plain, target: self, action: #selector(share(sender:)))
         share.tintColor = UIColor.black
         navigationItem.rightBarButtonItem = share
         
@@ -57,22 +57,22 @@ class HomeViewController: UIViewController {
         myHealthDescriptionLabel.lineBreakMode = .byWordWrapping
         myHealthDescriptionLabel.sizeToFit()
         
-        myHealthTitle.text = NSLocalizedString("home.myHealth.title", value: "My Health", comment: "section title")
-        myHealthDescriptionLabel.attributedText = NSMutableAttributedString(string: NSLocalizedString("home.myHealth.description", value: "Monitor your health and report symptoms.", comment: "section description"), attributes: [NSAttributedString.Key.kern: 0.25, NSAttributedString.Key.paragraphStyle: paragraphStyle ])
-        myHealthButton.setTitle(NSLocalizedString("home.myHealth.button", value: "CHECK-IN", comment: "button description"), for: .normal)
+        myHealthTitle.text = L10n.Home.MyHealth.title
+        myHealthDescriptionLabel.attributedText = NSMutableAttributedString(string: L10n.Home.MyHealth.description, attributes: [NSAttributedString.Key.kern: 0.25, NSAttributedString.Key.paragraphStyle: paragraphStyle ])
+        myHealthButton.setTitle(L10n.Home.MyHealth.button, for: .normal)
         
-        contactAlertsTitle.text = NSLocalizedString("home.contactAlerts.title", value: "Contact Alerts", comment: "section title")
+        contactAlertsTitle.text = L10n.Home.ContactAlerts.title
         contactAlertsDescriptionLabel.numberOfLines = 0
         contactAlertsDescriptionLabel.lineBreakMode = .byWordWrapping
-        contactAlertsDescriptionLabel.attributedText = NSMutableAttributedString(string: NSLocalizedString("home.contactAlerts.description", value: "Approximate times that you may have been exposed to a symptomatic individual", comment: "button description"), attributes: [NSAttributedString.Key.kern: 0.25, NSAttributedString.Key.paragraphStyle: paragraphStyle])
-        contactAlertsButton.setTitle(NSLocalizedString("home.contactAlerts.button", value: "SEE ALERTS", comment: "button description"), for: .normal)
+        contactAlertsDescriptionLabel.attributedText = NSMutableAttributedString(string: L10n.Home.ContactAlerts.description, attributes: [NSAttributedString.Key.kern: 0.25, NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        contactAlertsButton.setTitle(L10n.Home.ContactAlerts.button, for: .normal)
         
         configureCardView(cardView: self.stackContainerView)
         configureCardView(cardView: self.stackContainerViewTwo)
         
         versionLabel.text = getVersionNumber()
         buildLabel.text = getBuildNumber()
-        debugButton.setTitle(NSLocalizedString("home.footer.debug", value: "Debug", comment: "Button"), for: .normal)
+        debugButton.setTitle(L10n.Home.Footer.debug, for: .normal)
     }
     
     private func getVersionNumber() -> String{
@@ -82,7 +82,7 @@ class HomeViewController: UIViewController {
             fatalError("Failed to read bundle version")
         }
         print("Version : \(version)");
-        return "\(NSLocalizedString("home.footer.version", value: "Version", comment: "Label")): \(version)"
+        return "\(L10n.Home.Footer.version): \(version)"
     }
     
     private func getBuildNumber() -> String {
@@ -90,7 +90,7 @@ class HomeViewController: UIViewController {
             fatalError("Failed to read build number")
         }
         print("Build : \(build)")
-        return "\(NSLocalizedString("home.footer.build", value: "Build", comment: "Label")): \(build)"
+        return "\(L10n.Home.Footer.build): \(build)"
     }
     
     private func configureCardView(cardView: UIView){

@@ -3,31 +3,31 @@ import UIKit
 
 struct OnboardingStrings {
     
-    static let howYourDataIsUsed = NSLocalizedString("onboarding.howDataUsed", value: "How your data is used", comment: "Button")
-    static let getStarted = NSLocalizedString("onboarding.getStarted", value: "Get Started", comment: "Button")
-    static let collaborate = NSLocalizedString("onboarding.logo", value: "Collaborate. Inform. Protect.", comment: "Logo")
+    static let howYourDataIsUsed = L10n.Onboarding.howDataUsed
+    static let getStarted = L10n.Onboarding.getStarted
+    static let collaborate = L10n.Onboarding.logo
     
     static func makeAttributedTrack() -> NSMutableAttributedString {
         let newString = NSMutableAttributedString()
-        newString.append(makeLight(NSLocalizedString("onboarding.track.pre", value: "", comment: "Before bold")))
-        newString.append(makeBold(NSLocalizedString("onboarding.track.main", value: "Track", comment: "Bold part")))
-        newString.append(makeLight(NSLocalizedString("onboarding.track.post", value: " where you've been", comment: "After bold")))
+        newString.append(makeLight(L10n.Onboarding.Track.beforeBold))
+        newString.append(makeBold(L10n.Onboarding.Track.bold))
+        newString.append(makeLight(L10n.Onboarding.Track.afterBold))
         return newString
     }
     
     static func makeAttributedMonitor() -> NSMutableAttributedString {
          let newString = NSMutableAttributedString()
-        newString.append(makeLight(NSLocalizedString("onboarding.monitor.pre", value: "", comment: "Before bold")))
-        newString.append(makeBold(NSLocalizedString("onboarding.monitor.main", value: "Monitor", comment: "Bold part")))
-        newString.append(makeLight(NSLocalizedString("onboarding.monitor.post", value: " your health", comment: "After bold")))
+        newString.append(makeLight(L10n.Onboarding.Monitor.beforeBold))
+        newString.append(makeBold(L10n.Onboarding.Monitor.bold))
+        newString.append(makeLight(L10n.Onboarding.Monitor.afterBold))
          return newString
     }
     
     static func makeAttributedAlerts() -> NSMutableAttributedString {
        let newString = NSMutableAttributedString()
-        newString.append(makeLight(NSLocalizedString("onboarding.alerts.pre", value: "Get ", comment: "Before bold")))
-        newString.append(makeBold(NSLocalizedString("onboarding.alerts.main", value: "contextualized alerts", comment: "Bold part")))
-        newString.append(makeLight(NSLocalizedString("onboarding.alerts.post", value: " about possible exposure to infectious illness", comment: "After bold")))
+        newString.append(makeLight(L10n.Onboarding.Alerts.beforeBold))
+        newString.append(makeBold(L10n.Onboarding.Alerts.bold))
+        newString.append(makeLight(L10n.Onboarding.Alerts.afterBold))
         return newString
     }
     

@@ -1,4 +1,10 @@
-"alerts.count.units" = "new contact alert";
+/* After any changes to this file, re-run swiftgen
+   to regenerate generate/strings.swift.
+ */
+
+"alerts.count.none" = "no new contact alerts";
+"alerts.count.one" = "1 new contact alert";
+"alerts.count.some" = "%d new contact alerts";
 "alerts.title" = "Alerts";
 
 "healthquiz.submit" = "SUBMIT";
@@ -16,18 +22,18 @@
 "home.myHealth.title" = "My Health";
 "home.share" = "Share";
 
-"onboarding.alerts.pre" = "Get ";
-"onboarding.alerts.main" = "contextualized alerts";
-"onboarding.alerts.post" = " about possible exposure to infectious illness";
+"onboarding.alerts.beforeBold" = "Get ";
+"onboarding.alerts.bold" = "contextualized alerts";
+"onboarding.alerts.afterBold" = " about possible exposure to infectious illness";
 "onboarding.getStarted" = "GET STARTED";
 "onboarding.howDataUsed" = "How your data is used";
 "onboarding.logo" = "Collaborate. Inform. Protect.";
-"onboarding.monitor.pre" = "";
-"onboarding.monitor.main" = "Monitor";
-"onboarding.monitor.post" = " your health";
-"onboarding.track.pre" = "";
-"onboarding.track.main" = "Track";
-"onboarding.track.post" = " where you've been";
+"onboarding.monitor.beforeBold" = "";
+"onboarding.monitor.bold" = "Monitor";
+"onboarding.monitor.afterBold" = " your health";
+"onboarding.track.beforeBold" = "";
+"onboarding.track.bold" = "Track";
+"onboarding.track.afterBold" = " where you've been";
 
 "symptom.fever" = "Fever";
 "symptom.tiredness" = "Tiredness";
